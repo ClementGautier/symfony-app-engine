@@ -9,3 +9,6 @@ steps:
     dir: /app
     entrypoint: php
     args: ['bin/phpunit']
+  # Deploy
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'deploy', '--quiet', '--image-url', 'gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA', '--version', '$BRANCH_NAME', '--no-promote']
